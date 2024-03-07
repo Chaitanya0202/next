@@ -20,7 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
-  }, [messages]);
+  }, []);
 
   const fetchData = async () => {
     console.log("Fetching data...");
@@ -64,6 +64,7 @@ export default function Home() {
     } else {
       alert("Nothing");
     }
+    fetchData()
   };
 
   const deleteData = async (documentId) => {
@@ -74,9 +75,10 @@ export default function Home() {
     } catch (error) {
       console.error("Error deleting document: ", error);
     }
+    fetchData()
   };
 
-  const updateData = async (documentId, newData) => {
+  const updateData = async (documentId) => {
     try {
       const docRef = doc(db, "messages", documentId);
       const docSnapshot = await getDoc(docRef);
@@ -84,13 +86,21 @@ export default function Home() {
       if (docSnapshot.exists()) {
         const data = { id: docSnapshot.id, ...docSnapshot.data() };
         console.log("Document data:", data);
-
-        // Update the data here
-        const updatedData = { ...data, message: "Updated message" }; // Modify this line according to your update logic
-        await updateDoc(docRef, updatedData);
-
-        // Fetch data again to update the state
+      
+        let name1 = data.name;
+        let email1 = data.email;
+        let message1 = data.message;
+      
+        setName(name1);
+        setEmail(email1);
+        setMessage(message1);
+      
+        console.log("name", data.name);
+        console.log("email", data.email);
+        console.log("message", data.message); // Corrected typo in this line
+      
         fetchData();
+        deleteData(documentId);
       } else {
         console.log("No such document!");
       }
