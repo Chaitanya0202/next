@@ -102,33 +102,49 @@ export default function Home() {
   return (
     <>
       <h1>Add data To Database</h1>
-      <form onSubmit={handlerSubmit}>
-        <label htmlFor="name">Name</label>
+      <form onSubmit={handlerSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label htmlFor="name" style={{ marginBottom: '5px' }}>
+          Name
+        </label>
         <input
           type="text"
           name="name"
-          id=""
+          id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          style={{ border: '1px solid black', marginBottom: '10px', padding: '5px' }}
         />
-        <label htmlFor="email">Email</label>
+
+        <label htmlFor="email" style={{ marginBottom: '5px' }}>
+          Email
+        </label>
         <input
           type="text"
           name="email"
-          id=""
+          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          style={{ border: '1px solid black', marginBottom: '10px', padding: '5px' }}
         />
-        <label htmlFor="message">message</label>
+
+        <label htmlFor="message" style={{ marginBottom: '5px' }}>
+          Message
+        </label>
         <input
           type="text"
           name="message"
-          id=""
+          id="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          style={{ border: '1px solid black', marginBottom: '10px', padding: '5px' }}
         />
-        <button type="submit">SUBMIT</button>
-      </form>
+
+        <button type="submit" style={{ padding: '10px', backgroundColor: 'blue', color: 'white', border: 'none' }}>
+          SUBMIT
+        </button>
+      </div>
+    </form>
 
       <h1>Fetched Data</h1>
       <ul>
